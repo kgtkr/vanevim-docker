@@ -6,7 +6,9 @@ RUN apt install curl -y
 RUN apt install python3 -y
 RUN apt install python3-pip -y
 RUN apt install vim -y
-ENV HOME /root
+RUN useradd -m vim
+USER vim
+ENV HOME /home/vim
 WORKDIR $HOME/
 RUN git clone https://github.com/Vane11ope/.files.git
 WORKDIR $HOME/.files
@@ -20,5 +22,10 @@ RUN sh ./installer.sh .cache/dein/
 RUN pip3 install neovim
 RUN yes ""| vim -c q > /dev/null
 WORKDIR $HOME/.cache/dein/repos/github.com/ajmwagar/vim-deus/colors
+USER root
 RUN cp deus.vim /usr/share/vim/vim80/colors/
+USER vim
 WORKDIR $HOME/
+RUN mkdir workdir
+WORKDIR $HOME/workdir
+

@@ -7,5 +7,6 @@ $ sudo docker build -t vanevim .
 
 ## Run
 ```
-$ docker run --rm -t -i vanevim vim
+$ docker run --rm -t -i -v $PWD:/home/vim/workdir vanevim bash
+$ vim hoge.cpp
 ```
